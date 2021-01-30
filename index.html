@@ -26,48 +26,49 @@
         </nav>
     </header>
 
-    <!--Booking Section-->
+    
     <main class="main-content container">
+        <!--After Booking Pop-up Section-->
         <section id="confirmation">
             <h3>Book Ocean Time</h3>
             <div>
-                <p>Flying From: </p>
-                <p>Flying To: </p>
-                <p>Departure: </p>
-                <p>Return: </p>
-                <p>First class tickets: <span>0</span></p>
-                <p>Economy class tickets: <span>0</span></p>
-                <p>Subtotal:<span>$0</span></p>
-                <p>Vat: <span>$0</span></p>
-                <p>Total: <span>$0</span></p>
+                <p>Flying From: <span id="confirmation-flying-from"></span></p>
+                <p>Flying To: <span id="confirmation-flying-to"></span></p>
+                <p>Departure: <span id="confirmation-departure"></span> </p>
+                <p>Return: <span id="confirmation-return"></span></p>
+                <p>First class tickets: <span id ="confirmation-first-count">0</span></p>
+                <p>Economy class tickets: <span id ="confirmation-economy-count">0</span></p>
+                <p>Subtotal: <span id="confirmation-subtotal">$0</span></p>
+                <p>Vat: <span id="confirmation-vat">$0</span></p>
+                <p>Total: <span id="confirmation-total">$0</span></p>
             </div>
             <button class="btn-style" onclick="closeBookingConfirmation()">Back</button>
         </section>
 
+        <!--Booking Section-->
         <div class="booking-content">
             <h1>Cruise Queen</h1>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
         </div>
-
-
+        
         <div class="booking-form">
             <h3>Book Ocean Time</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
-                <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
+                <input id="flying-from" class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
             </div>
             <div class="input-group">
                 <label for="">Flying To</label>
-                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+                <input id="flying-to" class="inp-style" type="text" name="" placeholder="New York, United States">
             </div>
             <div class="inputs">
                 <div class="input-group">
                     <label" for="">Departure</label>
-                    <input class="inp-style" type="date" name="">
+                    <input id = "departure" class="inp-style" type="date" name="">
                 </div>
                 <div class="input-group">
                     <label for="">Return</label>
-                    <input class="inp-style" type="date" name="">
+                    <input id="return" class="inp-style" type="date" name="">
                 </div>
             </div>
             <div class="input-group f-class">
@@ -76,8 +77,8 @@
                     <input id = "first-class-count" class="inp-style inp-width" type="number" name="" value='0'>
                 </div>
                 <div class="plus-minus-btn">  
-                    <button onclick="handleProducts(true, 'first')">+</button>
-                    <button onclick="handleProducts(false, 'first')">-</button>
+                    <button onclick="handleProducts(true, 'first')" class="btn-increase">+</button>
+                    <button onclick="handleProducts(false, 'first')" class ="btn-decrease">-</button>
                 </div>
             </div>
             
@@ -87,8 +88,8 @@
                     <input id="economy-class-count" class="inp-style inp-width" type="number" name="" value='0'>
                 </div>
                 <div class="plus-minus-btn">
-                    <button onclick="handleProducts(true, 'economy')">+</button>
-                    <button onclick="handleProducts(false, 'economy')">-</button>
+                    <button onclick="handleProducts(true, 'economy')" class="btn-increase">+</button>
+                    <button onclick="handleProducts(false, 'economy')" class ="btn-decrease">-</button>
                 </div>
             </div>
             <div class="calculations">
@@ -123,6 +124,7 @@
         </div>
     </main>
     
+    <!--JavaScript-->
     <script>
         function handleProducts(isIncrease, ticket){
             const ticketInput = document.getElementById(ticket + '-class-count');
@@ -149,12 +151,65 @@
         }
         function openBookingConfirmation(){
             document.getElementById('confirmation').style.display = "block";
+            document.getElementById("btn-booked").disabled = true;
+            disableElement("btn-increase");
+            disableElement("btn-decrease");
+            rewritingForm("flying-from","confirmation-flying-from");
+            rewritingForm("flying-to","confirmation-flying-to");
+            rewritingForm("departure","confirmation-departure");
+            rewritingForm("return","confirmation-return");
+            rewritingForm("first-class-count","confirmation-first-count");
+            rewritingForm("economy-class-count","confirmation-economy-count");
+            rewritingCalculation("subtotal","confirmation-subtotal");
+            rewritingCalculation("vat","confirmation-vat");
+            rewritingCalculation("total","confirmation-total");
         }
+        function rewritingForm(id, rewritingId){
+            const valueOfId = document.getElementById(id).value;
+            document.getElementById(id).disabled = true;
+            if(valueOfId == ""){
+                document.getElementById(rewritingId).innerText = document.getElementById(id).placeholder;
+            }
+            else{
+                document.getElementById(rewritingId).innerText = valueOfId;
+            }
+        }
+        function rewritingCalculation(id, rewritingId){
+            document.getElementById(rewritingId).innerText = document.getElementById(id).innerText;
+        }
+        
         function closeBookingConfirmation(){
+            alert("You're confirmed the booking! If you wants to book other seats, fill up this form.");
             document.getElementById('confirmation').style.display = "none";
+            document.getElementById("btn-booked").disabled = false;
+            enableElement("btn-increase");
+            enableElement("btn-decrease");
+            enableElement("inp-style");
+            document.getElementById('flying-from').placeholder= "Dhaka, Bangladesh";
+            document.getElementById('flying-from').value = '';
+            document.getElementById('flying-to').placeholder="New York, United States";
+            document.getElementById('flying-to').value ="";
+            document.getElementById('economy-class-count').value = 0;
+            document.getElementById('first-class-count').value = 0;
+            document.getElementById('subtotal').innerText = '$'+ 0;
+            document.getElementById('vat').innerText ='$'+ 0;
+            document.getElementById('total').innerText ='$'+ 0;
+            
+        }
+
+        function enableElement(className){
+            const elements = document.getElementsByClassName(className);
+            for(var i = 0; i < elements.length; i++) {
+                elements[i].disabled = false;
+            }
+        }
+        function disableElement(className){
+            const elements = document.getElementsByClassName(className);
+            for(var i = 0; i < elements.length; i++) {
+                elements[i].disabled = true;
+            }
         }
     </script>
     <!--Thank You-->
 </body>
-
 </html>
