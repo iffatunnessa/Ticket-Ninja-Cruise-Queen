@@ -152,7 +152,7 @@
         function openBookingConfirmation(){
             const total = document.getElementById('total').innerText;
             if(total == "$0"){
-                alert("You haven't purchase any tickets!");
+                alert("You haven't booked any tickets yet! Please book at lease one ticket to proceed further.");
             }
             else{
                 document.getElementById('confirmation').style.display = "block";
@@ -186,7 +186,7 @@
         }
         
         function closeBookingConfirmation(){
-            alert("You're confirmed the booking! If you wants to book other seats, fill up this form.");
+            alert("You've confirmed the booking! If you wants to book other seats, fill up this form.");
             document.getElementById('confirmation').style.display = "none";
             document.getElementById("btn-booked").disabled = false;
             enableElement("btn-increase");
