@@ -107,7 +107,6 @@ nav ul li a:hover, a.active{
     background: none;
     border: none;
 }
-
 .booking-form .inputs{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -126,4 +125,28 @@ nav ul li a:hover, a.active{
 .amount{
     display: flex;
     justify-content: space-between;
+}
+#confirmation{
+    margin: 60px 300px;
+    width: 40%;
+    height: 400px;
+    background: #fdfdfd;
+    display: none;
+    position: fixed;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 4px 5px 15px 5px rgba(0,0,0,0.31);
+}
+#confirmation h3{
+    text-align: center;
+    padding-bottom: 20px;
+}
+#confirmation p{
+    padding-left: 50px;
+    padding-top: 5px;
+}
+#confirmation button{
+    margin: 5% 30%;
+    width:200px;
+    text-align: center;
 }

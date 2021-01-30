@@ -28,6 +28,21 @@
 
     <!--Booking Section-->
     <main class="main-content container">
+        <section id="confirmation">
+            <h3>Book Ocean Time</h3>
+            <div>
+                <p>Flying From: </p>
+                <p>Flying To: </p>
+                <p>Departure: </p>
+                <p>Return: </p>
+                <p>First class tickets: <span>0</span></p>
+                <p>Economy class tickets: <span>0</span></p>
+                <p>Subtotal:<span>$0</span></p>
+                <p>Vat: <span>$0</span></p>
+                <p>Total: <span>$0</span></p>
+            </div>
+            <button class="btn-style" onclick="closeBookingConfirmation()">Back</button>
+        </section>
 
         <div class="booking-content">
             <h1>Cruise Queen</h1>
@@ -104,9 +119,10 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button class="btn-style" id='btn-booked' onclick= "openBookingConfirmation()" type="button">Book Now</button>
         </div>
     </main>
+    
     <script>
         function handleProducts(isIncrease, ticket){
             const ticketInput = document.getElementById(ticket + '-class-count');
@@ -130,9 +146,13 @@
             document.getElementById('subtotal').innerText = '$' + subtotal;
             document.getElementById('vat').innerText = '$' + vat;
             document.getElementById('total').innerText = '$' + total;
-            
         }
-
+        function openBookingConfirmation(){
+            document.getElementById('confirmation').style.display = "block";
+        }
+        function closeBookingConfirmation(){
+            document.getElementById('confirmation').style.display = "none";
+        }
     </script>
     <!--Thank You-->
 </body>
