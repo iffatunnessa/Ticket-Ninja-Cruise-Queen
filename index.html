@@ -150,19 +150,26 @@
             document.getElementById('total').innerText = '$' + total;
         }
         function openBookingConfirmation(){
-            document.getElementById('confirmation').style.display = "block";
-            document.getElementById("btn-booked").disabled = true;
-            disableElement("btn-increase");
-            disableElement("btn-decrease");
-            rewritingForm("flying-from","confirmation-flying-from");
-            rewritingForm("flying-to","confirmation-flying-to");
-            rewritingForm("departure","confirmation-departure");
-            rewritingForm("return","confirmation-return");
-            rewritingForm("first-class-count","confirmation-first-count");
-            rewritingForm("economy-class-count","confirmation-economy-count");
-            rewritingCalculation("subtotal","confirmation-subtotal");
-            rewritingCalculation("vat","confirmation-vat");
-            rewritingCalculation("total","confirmation-total");
+            const total = document.getElementById('total').innerText;
+            if(total == "$0"){
+                alert("You haven't purchase any tickets!");
+            }
+            else{
+                document.getElementById('confirmation').style.display = "block";
+                document.getElementById("btn-booked").disabled = true;
+                disableElement("btn-increase");
+                disableElement("btn-decrease");
+                rewritingForm("flying-from","confirmation-flying-from");
+                rewritingForm("flying-to","confirmation-flying-to");
+                rewritingForm("departure","confirmation-departure");
+                rewritingForm("return","confirmation-return");
+                rewritingForm("first-class-count","confirmation-first-count");
+                rewritingForm("economy-class-count","confirmation-economy-count");
+                rewritingCalculation("subtotal","confirmation-subtotal");
+                rewritingCalculation("vat","confirmation-vat");
+                rewritingCalculation("total","confirmation-total");
+            }
+            
         }
         function rewritingForm(id, rewritingId){
             const valueOfId = document.getElementById(id).value;
